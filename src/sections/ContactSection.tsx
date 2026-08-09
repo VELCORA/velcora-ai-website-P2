@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: 'What does it cost?',
-    a: 'Every project is scoped on the free audit call. Most small-business automations start under \u20b915,000 and pay for themselves within months.',
+    a: 'Every project is scoped on the free audit call. Most small-business automations start under $500 and pay for themselves within months.',
   },
   {
     q: 'What tools do you use?',

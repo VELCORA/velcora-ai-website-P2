@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://velcora-ai.vercel.app/sitemap.xml
+Sitemap: https://velcora-ai-website.vercel.app/sitemap.xml

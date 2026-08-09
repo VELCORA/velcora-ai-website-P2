@@ -1,6 +1,6 @@
 # Velcora AI Website
 
-Single-page marketing site for Velcora AI — AI agents, WhatsApp chatbots, and automation systems for Indian small businesses.
+Single-page marketing site for Velcora AI — AI agents, WhatsApp chatbots, and automation systems for growing businesses.
 
 > **Proprietary.** Copyright © 2026 Velcora AI. All rights reserved.
 > This repository is public for portfolio and credibility purposes only. Viewing the source is permitted; copying, reusing, or redistributing it (in whole or part) without written permission from Velcora AI is prohibited.

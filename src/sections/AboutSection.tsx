@@ -6,7 +6,7 @@ import lego from '../assets/about/lego.png';
 import group from '../assets/about/group.png';
 
 const ABOUT_TEXT =
-  'Velcora AI builds AI agents, WhatsApp chatbots, and automation systems for Indian small businesses. We take the repetitive work off your plate — follow-ups, enquiries, documents, reports — so your team does work that actually makes money. No jargon. No over-engineering. Just systems that pay for themselves.';
+  'Velcora AI builds AI agents, WhatsApp chatbots, and automation systems for businesses that want to grow. We take the repetitive work off your plate — follow-ups, enquiries, documents, reports — so your team does work that actually makes money. No jargon. No over-engineering. Just systems that pay for themselves.';
 
 export default function AboutSection() {
   return (

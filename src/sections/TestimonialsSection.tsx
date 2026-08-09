@@ -6,19 +6,19 @@ const TESTIMONIALS = [
     quote:
       'The WhatsApp chatbot handles every order enquiry while we sleep. Morning = replies waiting, customers happy, zero missed sales.',
     name: 'Clinic Owner',
-    role: 'Healthcare · Bengaluru',
+    role: 'Healthcare · New York',
   },
   {
     quote:
       'Our follow-up pipeline used to be two guys doing the same copy-paste all day. Now the AI does it in seconds and the leads actually convert.',
     name: 'Sales Lead',
-    role: 'Real Estate · Pune',
+    role: 'Real Estate · London',
   },
   {
     quote:
       'Asked them for a simple automation. Got a system that saves us 15+ hours a week. Paid for itself in the first month.',
     name: 'Operations Head',
-    role: 'Logistics · Delhi',
+    role: 'Logistics · Dubai',
   },
 ];
 
