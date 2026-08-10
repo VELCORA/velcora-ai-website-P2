@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import footerLogo from '../assets/footer-logo.png';
-import { wa, CTA_MESSAGES, WHATSAPP_DISPLAY, CONTACT_EMAIL } from '../lib/constants';
+import { wa, CTA_MESSAGES, WHATSAPP_DISPLAY, CONTACT_EMAIL, GITHUB_URL } from '../lib/constants';
 
 const NAV = [
   { label: 'About', href: '#about' },
@@ -109,6 +109,16 @@ export default function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
+              <li className="mt-3">
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#888] no-underline text-[0.85rem] transition-colors duration-200 hover:text-neutral-900"
+                >
+                  github.com/VELCORA
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -152,17 +162,25 @@ export default function Footer() {
 
         <div className="border-t border-[#f0f0f0] pt-[25px] pb-[10px] flex justify-between text-[0.85rem] text-[#888] max-[480px]:flex-col max-[480px]:gap-[15px] max-[480px]:items-center">
           <p>All rights reserved. &copy; {new Date().getFullYear()} Velcora AI</p>
-          <p>
-            WhatsApp:{' '}
+          <div className="flex gap-5 max-[480px]:flex-col max-[480px]:items-center">
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#888] no-underline hover:text-neutral-900 transition-colors duration-200"
+            >
+              GitHub
+            </a>
+            <span className="max-[480px]:hidden">·</span>
             <a
               href={wa('Hi Velcora AI!')}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#888] no-underline hover:text-neutral-900 transition-colors duration-200"
             >
-              {WHATSAPP_DISPLAY}
+              WhatsApp: {WHATSAPP_DISPLAY}
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </footer>
