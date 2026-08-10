@@ -8,6 +8,13 @@ import group from '../assets/about/group.png';
 const ABOUT_TEXT =
   'Velcora AI builds AI agents, WhatsApp chatbots, and automation systems for businesses that want to grow. We take the repetitive work off your plate — follow-ups, enquiries, documents, reports — so your team does work that actually makes money. No jargon. No over-engineering. Just systems that pay for themselves.';
 
+const STATS = [
+  { value: '7+', label: 'Years Experience' },
+  { value: '50+', label: 'Businesses Automated' },
+  { value: '15h', label: 'Saved Per Client / Week' },
+  { value: '6', label: 'Industries Served' },
+];
+
 export default function AboutSection() {
   return (
     <section id="about" className="relative bg-[#0C0C0C] flex min-h-screen flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20">
@@ -58,6 +65,21 @@ export default function AboutSection() {
           <p className="text-center font-medium leading-relaxed text-[#D7E2EA] max-w-[560px] text-[clamp(1rem,2vw,1.35rem)]">
             {ABOUT_TEXT}
           </p>
+        </FadeIn>
+
+        <FadeIn delay={0.25} y={20}>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 mt-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="text-[clamp(2rem,5vw,3.5rem)] font-black text-white leading-none">
+                  {s.value}
+                </p>
+                <p className="text-[#888] text-[clamp(0.7rem,1.2vw,0.9rem)] mt-2 uppercase tracking-wider">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </FadeIn>
 
         <div className="mt-6 md:mt-8">

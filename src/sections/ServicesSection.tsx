@@ -7,36 +7,42 @@ const SERVICES = [
     name: 'AI Sales Pipeline',
     description:
       'Your leads contacted within 60 seconds. AI qualifies them, follows up on WhatsApp and email, and books meetings automatically — so no enquiry ever goes cold.',
+    tools: 'n8n · OpenAI · Gmail · WhatsApp API',
   },
   {
     number: '02',
     name: 'WhatsApp Business Bot',
     description:
       'An AI chatbot trained on your catalog, prices, and FAQs. It answers customers instantly, 24/7, takes orders, and hands off to your team when it matters.',
+    tools: 'OpenAI · WhatsApp Business API · Vector Search',
   },
   {
     number: '03',
     name: 'Chat with Your Documents',
     description:
       'Contracts, invoices, reports — upload them once and ask questions like you are talking to an expert who has read everything.',
+    tools: 'LangChain · Pinecone · OpenAI · RAG',
   },
   {
     number: '04',
     name: 'Lead Capture & Follow-up',
     description:
       'Forms, ads, and enquiries funnel into one system. Automatic replies, scheduled follow-ups, and a clean pipeline you can actually see.',
+    tools: 'Make · Airtable · Gmail · WhatsApp',
   },
   {
     number: '05',
     name: 'Back-office Automation',
     description:
       'Invoices, reports, data entry, email sorting. Repetitive office work runs itself, and your team gets 15+ hours back every week.',
+    tools: 'n8n · Google Sheets · OpenAI Vision · SMTP',
   },
   {
     number: '06',
     name: 'Custom AI Workflows',
     description:
-      'Your business is unique — we design automations around your exact process, using n8n, OpenAI, and the tools you already use.',
+      'Your business is unique — we design automations around your exact process, using the tools you already use with zero lock-in.',
+    tools: 'n8n · Make · Python · Docker · REST APIs',
   },
 ];
 
@@ -66,6 +72,11 @@ export default function ServicesSection() {
                 <p className="font-light leading-relaxed max-w-2xl text-[#0C0C0C] opacity-60 text-[clamp(0.85rem,1.6vw,1.25rem)]">
                   {service.description}
                 </p>
+                {service.tools && (
+                  <p className="text-[0.75rem] font-medium tracking-wider text-[#0C0C0C] opacity-40 uppercase mt-1">
+                    {service.tools}
+                  </p>
+                )}
               </div>
             </div>
           </FadeIn>
