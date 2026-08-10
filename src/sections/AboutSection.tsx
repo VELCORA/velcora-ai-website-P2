@@ -6,7 +6,7 @@ import lego from '../assets/about/lego.png';
 import group from '../assets/about/group.png';
 
 const ABOUT_TEXT =
-  'Velcora AI builds AI agents, WhatsApp chatbots, and automation systems for businesses that want to grow. We take the repetitive work off your plate — follow-ups, enquiries, documents, reports — so your team does work that actually makes money. No jargon. No over-engineering. Just systems that pay for themselves.';
+  'Velcora AI is a full-spectrum software engineering firm. We build AI agents, web apps, mobile apps, SaaS platforms, chatbots, automations, and custom software — whatever your business needs to grow. From rapid prototypes to production systems, we ship fast and make it run. No jargon. No over-engineering. Just software that pays for itself.';
 
 const STATS = [
   { value: '7+', label: 'Years Experience' },

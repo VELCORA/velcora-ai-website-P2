@@ -4,45 +4,45 @@ import ContactButton from '../components/ContactButton';
 const SERVICES = [
   {
     number: '01',
-    name: 'AI Sales Pipeline',
+    name: 'Custom Software',
     description:
-      'Your leads contacted within 60 seconds. AI qualifies them, follows up on WhatsApp and email, and books meetings automatically — so no enquiry ever goes cold.',
-    tools: 'n8n · OpenAI · Gmail · WhatsApp API',
+      'Your business has unique problems. We build the software to solve them — dashboards, internal tools, portals,CRMs, ERPs — whatever you need, built around your exact workflow.',
+    tools: 'Python · Node.js · React · Next.js · PostgreSQL',
   },
   {
     number: '02',
-    name: 'WhatsApp Business Bot',
+    name: 'AI Agents & Automation',
     description:
-      'An AI chatbot trained on your catalog, prices, and FAQs. It answers customers instantly, 24/7, takes orders, and hands off to your team when it matters.',
-    tools: 'OpenAI · WhatsApp Business API · Vector Search',
+      'AI that qualifies leads, follows up on WhatsApp, answers customer queries, processes documents, and runs your back office — so your team does work that actually makes money.',
+    tools: 'n8n · OpenAI · LangChain · WhatsApp API · Vector Search',
   },
   {
     number: '03',
-    name: 'Chat with Your Documents',
+    name: 'Web Applications',
     description:
-      'Contracts, invoices, reports — upload them once and ask questions like you are talking to an expert who has read everything.',
-    tools: 'LangChain · Pinecone · OpenAI · RAG',
+      'Full-stack SaaS platforms, admin panels, customer portals, and dashboards. Production-grade, responsive, and built to scale from day one.',
+    tools: 'React · Next.js · TypeScript · Tailwind · Vercel',
   },
   {
     number: '04',
-    name: 'Lead Capture & Follow-up',
+    name: 'Mobile Apps',
     description:
-      'Forms, ads, and enquiries funnel into one system. Automatic replies, scheduled follow-ups, and a clean pipeline you can actually see.',
-    tools: 'Make · Airtable · Gmail · WhatsApp',
+      'Cross-platform mobile apps for iOS and Android. Ship once, run everywhere — with push notifications, offline support, and native performance.',
+    tools: 'React Native · Expo · Swift · Kotlin · Firebase',
   },
   {
     number: '05',
-    name: 'Back-office Automation',
+    name: 'APIs & Integrations',
     description:
-      'Invoices, reports, data entry, email sorting. Repetitive office work runs itself, and your team gets 15+ hours back every week.',
-    tools: 'n8n · Google Sheets · OpenAI Vision · SMTP',
+      'We connect the tools you already use — OAuth2, webhooks, third-party APIs, REST, GraphQL — and build the glue that holds your stack together.',
+    tools: 'REST · GraphQL · gRPC · OAuth2 · Webhooks',
   },
   {
     number: '06',
-    name: 'Custom AI Workflows',
+    name: 'Data & Analytics',
     description:
-      'Your business is unique — we design automations around your exact process, using the tools you already use with zero lock-in.',
-    tools: 'n8n · Make · Python · Docker · REST APIs',
+      'Data pipelines, ETL systems, real-time dashboards, and reporting engines. Turn scattered data into decisions — no more spreadsheet chaos.',
+    tools: 'Python · PostgreSQL · Redis · Kafka · Docker',
   },
 ];
 

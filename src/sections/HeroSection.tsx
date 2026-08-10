@@ -68,8 +68,8 @@ export default function HeroSection() {
       <div className="relative z-30 flex items-end justify-between px-6 md:px-10 pb-7 sm:pb-8 md:pb-10">
         <FadeIn delay={0.35} y={20}>
           <p className="text-black font-light uppercase tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.5rem)] max-w-[160px] sm:max-w-[220px] md:max-w-[260px]">
-            we build ai agents, whatsapp chatbots, and automations that run
-            your business
+            we build software that runs businesses — ai agents, web apps,
+            mobile apps, automations, and custom systems
           </p>
         </FadeIn>
         <FadeIn delay={0.5} y={20}>

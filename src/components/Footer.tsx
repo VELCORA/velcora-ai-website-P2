@@ -45,8 +45,7 @@ export default function Footer() {
               className="w-[170px] sm:w-[190px] mx-auto md:mx-0 -translate-y-[20%] drop-shadow-[0_14px_28px_rgba(12,12,12,0.22)]"
             />
             <p className="relative -mt-9 text-[0.85rem] text-[#888] leading-[1.6] max-w-[220px] text-center md:text-left">
-              AI agents, WhatsApp automation, and custom systems that run small
-              businesses on autopilot.
+              Full-spectrum software engineering — AI agents, web apps, mobile apps, automations, and custom systems.
             </p>
           </div>
 
