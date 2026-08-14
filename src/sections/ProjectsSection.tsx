@@ -137,6 +137,34 @@ const PROJECTS: Project[] = [
     live: 'https://velcora-ai-salon-os-p9.vercel.app',
     cta: wa('Hi Velcora AI, I want a Salon OS like this for my salon.'),
   },
+  {
+    number: '05',
+    name: 'Velcora AI Agent',
+    category: 'AI Co-Pilot · Chat App',
+    tagline:
+      'A business operations co-pilot with five tuned workflow modes — qualify leads, draft emails, summarize meetings, research markets, and write proposals.',
+    problem:
+      'Every business task lives in a different tool in a different style. Qualifying a lead, drafting outreach, summarizing a meeting, researching a market, and packing a proposal all need different thinking — so teams wing it every time.',
+    solution:
+      'One co-pilot, five specialist modes. Each mode carries a tuned system prompt — Lead Qualifier, Email Drafter, Meeting Summarizer, Market Researcher, Proposal Writer — so the AI answers with the right structure, tone, and output format for the task.',
+    result:
+      'Anyone in the business gets specialist-grade output in seconds — scored leads, ready-to-send emails, meeting action items, competitive research, and structured proposals — without switching tools or training an AI.',
+    built: [
+      'Rebranded and customized the Vercel AI Chatbot template (Next.js 16 + AI SDK) into a Velcora-branded co-pilot.',
+      'Defined five Velcora workflow modes in lib/ai/modes.ts — each with icon, color, badge, starter prompts, and a tuned BANT/sales/outreach system prompt.',
+      'Used the Lead Qualifier\'s system prompt to output a structured Qualification Card: lead score 0–100, hot/warm/cold, red flags, next action — via the createDocument tool.',
+      'Wired session auth, chat history persistence, and a multi-model switcher across leading LLMs.',
+    ],
+    stack: ['Next.js 16', 'AI SDK', 'TypeScript', 'Drizzle', 'Vercel'],
+    images: [
+      { src: '/projects/ai-agent/col1-image1.webp', caption: 'Onboarding — five workflow modes with starter prompts' },
+      { src: '/projects/ai-agent/col1-image2.webp', caption: 'Chat thread — prompt runs through the co-pilot' },
+      { src: '/projects/ai-agent/col2-image.webp', caption: 'Model switcher — run the agent on your choice of LLM' },
+    ],
+    repo: 'https://github.com/VELCORA/velcora-ai-agent-P7',
+    live: 'https://velcora-ai-agent-p6.vercel.app',
+    cta: wa('Hi Velcora AI, I want an AI co-pilot like this for my business.'),
+  },
 ];
 
 function ImageLightbox({
