@@ -193,6 +193,34 @@ const PROJECTS: Project[] = [
     live: 'https://velcora-ai-knowledge-chatbot-hub-p1.vercel.app',
     cta: wa('Hi Velcora AI, I want a knowledge chatbot hub like this for my business.'),
   },
+  {
+    number: '07',
+    name: 'Velcora High-Fidelity Studio',
+    category: 'Data Intelligence · Web App',
+    tagline:
+      'An autonomous web scraper, data-intelligence studio, and workflow-automation builder — with a deep-focus suite to do the work distraction-free.',
+    problem:
+      'Market research means manually copy-pasting from messy websites, cleaning data in spreadsheets, and redoing the same extraction every week. Founders and analysts burn hours turning the open web into structured intelligence.',
+    solution:
+      'A cinematic single-page workspace. Paste any public URL into the Scraper Studio and get structured JSON — title, summary, key metrics, items, sentiment, confidence — powered by Gemini. Plus a data engine, visual automation builder, and a focus station.',
+    result:
+      'Any website becomes clean, structured data in one click — competitor price matrices, tech digests, lead enrichment — and repeatable workflows run on cron instead of weekends.',
+    built: [
+      'Built the Scraper Studio: paste any public URL, get a structured JSON extract (title, summary, key metrics, items, sentiment, confidence) via the Gemini-powered backend.',
+      'Added preset scrape targets — TechCrunch AI Pulse, GitHub Trending, e-commerce price matrix, Hacker News — with structured JSON / data grid / summary / cURL API output tabs.',
+      'Built the Automation Builder: visual extract → AI → dispatch pipelines with cron deployment, plus the Data Engine to clean and normalize raw input.',
+      'Built the Focus Station: Pomodoro timer (25m / 45m / 90m) with a task queue and procedural ambient soundscapes — Golden Hour, Still Water, Deep Woods.',
+    ],
+    stack: ['Vite', 'React 19', 'TypeScript', 'Tailwind', 'Gemini', 'Express'],
+    images: [
+      { src: '/projects/high-fidelity/col1-image1.webp', caption: 'Hero — clarity in an endlessly noisy universe' },
+      { src: '/projects/high-fidelity/col1-image2.webp', caption: 'Scraper Studio — preset targets + JSON / grid / cURL outputs' },
+      { src: '/projects/high-fidelity/col2-image.webp', caption: 'Automation + Focus — pipelines, cron, Pomodoro, ambient sound' },
+    ],
+    repo: 'https://github.com/VELCORA/velcora-ai-high-fidelity-p8',
+    live: 'https://velcora-ai-high-fidelity-marketing.vercel.app',
+    cta: wa('Hi Velcora AI, I want a web scraping and data intelligence studio like this.'),
+  },
 ];
 
 function ImageLightbox({
