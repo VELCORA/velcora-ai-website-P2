@@ -90,10 +90,10 @@ function ProjectCard({
     >
       <motion.div
         style={{ scale, top: `${index * 28}px` }}
-        className="relative w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 h-full flex flex-col overflow-hidden"
+        className="relative w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-3 sm:p-5 md:p-6 h-full flex flex-col overflow-hidden"
       >
-        <div className="flex items-center justify-between gap-4 mb-4 shrink-0">
-          <span className="font-black text-[#D7E2EA] text-[clamp(3rem,10vw,140px)] leading-none">
+        <div className="flex items-center justify-between gap-4 mb-3 shrink-0">
+          <span className="font-black text-[#D7E2EA] text-[clamp(2rem,7vw,110px)] leading-none">
             {project.number}
           </span>
           <div className="flex items-center gap-4 sm:gap-6">
@@ -108,59 +108,59 @@ function ProjectCard({
           </div>
         </div>
 
-        <div className="flex gap-3 items-stretch flex-1 min-h-0 mb-4">
+        <div className="flex gap-3 items-stretch flex-1 min-h-0 mb-3">
           <div
             className="flex flex-col gap-3 min-w-0 min-h-0"
-            style={{ width: '40%' }}
+            style={{ width: '44%' }}
           >
             <img
               src={project.col1Image1}
               alt=""
-              className="w-full flex-1 min-h-0 object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="w-full flex-1 min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
               loading="lazy"
             />
             <img
               src={project.col1Image2}
               alt=""
-              className="w-full flex-1 min-h-0 object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="w-full flex-1 min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
               loading="lazy"
             />
           </div>
           <div
             className="min-w-0 min-h-0"
-            style={{ width: '60%' }}
+            style={{ width: '56%' }}
           >
             <img
               src={project.col2Image}
               alt={project.name}
-              className="w-full h-full min-h-0 object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="w-full h-full min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
               loading="lazy"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-4 gap-y-3 md:flex md:flex-row md:gap-4 text-[#D7E2EA] shrink-0">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2 md:flex md:flex-row md:gap-5 text-[#D7E2EA] shrink-0">
           <div className="md:flex-1">
-            <p className="text-xs uppercase tracking-widest opacity-50 mb-1">Problem</p>
-            <p className="text-sm font-light leading-relaxed">{project.problem}</p>
+            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Problem</p>
+            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.problem}</p>
           </div>
           <div className="md:flex-1">
-            <p className="text-xs uppercase tracking-widest opacity-50 mb-1">Solution</p>
-            <p className="text-sm font-light leading-relaxed">{project.solution}</p>
+            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Solution</p>
+            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.solution}</p>
           </div>
           <div className="md:flex-1">
-            <p className="text-xs uppercase tracking-widest opacity-50 mb-1">Result</p>
-            <p className="text-sm font-light leading-relaxed">{project.result}</p>
+            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Result</p>
+            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.result}</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-end gap-3 mt-4 shrink-0">
+        <div className="flex flex-wrap items-center justify-end gap-2.5 mt-3 shrink-0">
           {project.repo && (
             <a
               href={project.repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -174,7 +174,7 @@ function ProjectCard({
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
