@@ -109,6 +109,34 @@ const PROJECTS: Project[] = [
     live: 'https://velcora-enterprise-doc-p6.vercel.app',
     cta: wa('Hi Velcora AI, I want enterprise document processing like this for my business.'),
   },
+  {
+    number: '04',
+    name: 'Velcora Salon OS',
+    category: 'Vertical SaaS · Web App',
+    tagline:
+      'Turn salon chaos into effortless luxury — unified scheduling, real-time inventory, stylist commissions, and autonomous AI client retention.',
+    problem:
+      'Salons juggle chairs, bookings, color stock, stylist pay, and client reminders across notebooks and apps. Double-bookings, empty chairs, low-stock shocks, and no-shows quietly eat the margin.',
+    solution:
+      'A salon operating system: chair scheduling matrix, barcode color inventory with auto-deduct, stylist roster with commission splits, and AI automations that send SMS / WhatsApp reminders and reorder stock — with an AI copilot on top.',
+    result:
+      'Every chair filled and tracked, stock never runs dry, commissions split automatically, and AI notifications cut no-shows toward zero — while the salon runs itself.',
+    built: [
+      'Built the overview command center: today\'s chairs, active services, low-stock alerts, and daily gross with auto commission splits.',
+      'Built the appointments workspace with a chair scheduling matrix plus a client booking demo portal.',
+      'Wired the color bar: barcode inventory tracking with station-mix simulation and auto-deduct on service completion.',
+      'Added AI automations — SMS / WhatsApp client retention bot, no-show alerts — and a Velcora AI Copilot layer.',
+    ],
+    stack: ['TypeScript', 'Vite', 'React', 'Tailwind', 'AI Automations', 'Vercel'],
+    images: [
+      { src: '/projects/salon-os/col1-image1.webp', caption: 'Overview — chairs booked, stock alerts, daily gross with commission splits' },
+      { src: '/projects/salon-os/col1-image2.webp', caption: 'Appointments — chair scheduling matrix + client booking demo' },
+      { src: '/projects/salon-os/col2-image.webp', caption: 'Inventory — color bar with barcode tracking and auto-deduct' },
+    ],
+    repo: 'https://github.com/VELCORA/velcora-ai-salon-os-p9',
+    live: 'https://velcora-ai-salon-os-p9.vercel.app',
+    cta: wa('Hi Velcora AI, I want a Salon OS like this for my salon.'),
+  },
 ];
 
 function ImageLightbox({
