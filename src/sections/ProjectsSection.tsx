@@ -165,6 +165,34 @@ const PROJECTS: Project[] = [
     live: 'https://velcora-ai-agent-p6.vercel.app',
     cta: wa('Hi Velcora AI, I want an AI co-pilot like this for my business.'),
   },
+  {
+    number: '06',
+    name: 'Velcora Knowledge Chatbot Hub',
+    category: 'Customer Intelligence · Platform',
+    tagline:
+      'Turn your documents into a live knowledge base, power an AI chatbot, and orchestrate conversations across webchat, Slack, WhatsApp, and email — from one workspace.',
+    problem:
+      'Support and success teams drown in tickets. Customer questions repeat across webchat, WhatsApp, Slack, and email — and every answer lives in someone\'s head or a folder nobody can search.',
+    solution:
+      'A customer-intelligence platform with four tiers: ingest documents into a knowledge base, embed them for retrieval, retrieve with confidence scoring, and generate sourced answers. Plus an omnichannel conversation hub that triages by sentiment, intent, and urgency.',
+    result:
+      'The AI answers customers 24/7 with sourced, confidence-scored answers straight from your documents. Conversations get triaged and routed automatically — tickets die down, deflection savings show up in the ROI model.',
+    built: [
+      'Built the AI Playground — a live chat modal with an instant welcome message, 99.8% confidence score, and source citations pulled from the knowledge base.',
+      'Wired the knowledge base: ingest documents, get sourced answers with confidence scores via the Gemini-backed engine.',
+      'Built the Conversation Hub — triage, sentiment, intent, and urgency tagging across channels.',
+      'Added the architecture view (4-tier ingest → embed → retrieve → generate), ROI calculator, security matrix, and plan picker that opens provisioning.',
+    ],
+    stack: ['Vite', 'React 19', 'TypeScript', 'Tailwind v4', 'Gemini', 'Express', 'Vercel'],
+    images: [
+      { src: '/projects/chatbot-hub/col1-image1.webp', caption: 'Hero — autonomy platform with Live Studio, Vector Hub, ROI, Pricing' },
+      { src: '/projects/chatbot-hub/col1-image2.webp', caption: 'AI Playground — sourced answers with confidence score + citations' },
+      { src: '/projects/chatbot-hub/col2-image.webp', caption: 'Knowledge Base — ingest documents, get sourced answers' },
+    ],
+    repo: 'https://github.com/VELCORA/velcora-ai-knowledge-chatbot-hub-P10',
+    live: 'https://velcora-ai-knowledge-chatbot-hub-p1.vercel.app',
+    cta: wa('Hi Velcora AI, I want a knowledge chatbot hub like this for my business.'),
+  },
 ];
 
 function ImageLightbox({
