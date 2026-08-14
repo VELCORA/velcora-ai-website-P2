@@ -86,24 +86,24 @@ function ProjectCard({
   return (
     <div
       ref={containerRef}
-      className="relative h-[85vh] flex items-start justify-center sticky top-24 md:top-32"
+      className="relative h-[88vh] flex items-start justify-center sticky top-20 md:top-28"
     >
       <motion.div
         style={{ scale, top: `${index * 28}px` }}
         className="relative w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-3 sm:p-5 md:p-6 h-full flex flex-col overflow-hidden"
       >
-        <div className="flex items-center justify-between gap-4 mb-3 shrink-0">
-          <span className="font-black text-[#D7E2EA] text-[clamp(2rem,7vw,110px)] leading-none">
+        <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
+          <span className="font-black text-[#D7E2EA] text-[clamp(1.8rem,6vw,95px)] leading-none">
             {project.number}
           </span>
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="text-right">
-              <p className="uppercase tracking-widest text-[#D7E2EA] text-xs sm:text-sm opacity-70">
+              <p className="uppercase tracking-widest text-[#D7E2EA] text-[0.65rem] sm:text-xs opacity-70">
                 {project.category}
               </p>
-              <h3 className="font-medium uppercase text-[#D7E2EA] text-[clamp(1rem,2.2vw,2.1rem)]">
+              <h2 className="font-medium uppercase text-[#D7E2EA] text-[clamp(0.95rem,1.8vw,1.6rem)]">
                 {project.name}
-              </h3>
+              </h2>
             </div>
           </div>
         </div>
