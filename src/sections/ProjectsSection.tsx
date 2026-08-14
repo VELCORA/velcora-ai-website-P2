@@ -35,18 +35,17 @@ const PROJECTS: Project[] = [
   },
   {
     number: '02',
-    name: 'WhatsFlow — WhatsApp Automation',
-    category: 'Conversational AI',
-    problem: 'Businesses drown in repetitive WhatsApp questions — orders, prices, timings, bookings — and customers wait hours for answers.',
-    solution: 'An AI WhatsApp chatbot trained on your catalog, FAQs, and policies. It answers instantly, takes orders, and hands off to a human when needed.',
-    result: '99% of routine questions answered instantly, 24/7. Your team only handles conversations that actually need a human.',
-    col1Image1:
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1280&q=80',
-    col1Image2:
-      'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1280',
-    col2Image:
-      'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1280&q=80',
-    cta: wa('Hi Velcora AI, I want a WhatsApp chatbot for my business.'),
+    name: 'Velcora Lead Pipeline CRM',
+    category: 'Sales Ops · Web App',
+    problem: 'Agencies and service businesses lose track of incoming demand — leads land in DMs and inboxes, never get followed up, and deals quietly die.',
+    solution: 'A single-tenant CRM that captures every lead from one intake form, auto-scores it (0–100, hot/warm/cold) and moves it through a kanban pipeline: new → qualified → proposal → won or lost.',
+    result: 'Every lead captured in seconds with a score and next action. Zero leads slip through the cracks — follow-ups happen on schedule, won rate goes up.',
+    col1Image1: '/projects/lead-pipeline/col1-image1.webp',
+    col1Image2: '/projects/lead-pipeline/col1-image2.webp',
+    col2Image: '/projects/lead-pipeline/col2-image.webp',
+    repo: 'https://github.com/VELCORA/velcora-single-tenant-lead-pipeline-crm-p5',
+    live: 'https://velcora-single-tenant-lead-pipeline.vercel.app',
+    cta: wa('Hi Velcora AI, I want a lead pipeline CRM like this for my business.'),
   },
   {
     number: '03',
