@@ -38,15 +38,15 @@ const PROJECTS: Project[] = [
     result:
       'Quotes in seconds instead of hours. Every quote on-brand and consistent, edit any figure and totals update instantly — no more spreadsheet arithmetic before sending.',
     built: [
-      'Rebuilt a broken Lovable export into a clean Vite + React 19 + TypeScript SPA — dropped the 1,000-package Azure/Capacitor tree.',
-      'Kept the 44 shadcn UI components and the QuoteSheet engine — fully typed, zero dead deps.',
+      'Designed and built a clean Vite + React 19 + TypeScript SPA from scratch — custom Tailwind v4 theme, no heavy scaffolding, zero dead dependencies.',
+      'Used the 44 shadcn UI components and the QuoteSheet engine — fully typed, built in-house.',
       'Added a Vercel server function that drafts a complete quotation from a one-line brief using the Gemini API.',
       'Hardened it: custom Tailwind v4 theme, local-first quote store, live tax/total recalculation, vercel.json SPA rewrite.',
     ],
     stack: ['Vite', 'React 19', 'TypeScript', 'Tailwind v4', 'shadcn/ui', 'Gemini API', 'Vercel'],
     images: [
       { src: '/projects/quote-generator/col2-image.webp', caption: 'The final quote sheet — branded, print-ready, every figure editable' },
-      { src: '/projects/quote-generator/col1-image1.webp', caption: 'Start from a template or a blank sheet' },
+      { src: '/projects/quote-generator/col1-image1.webp', caption: 'Start from a saved layout or a blank sheet' },
       { src: '/projects/quote-generator/col1-image2.webp', caption: 'AI drafts the full quote from a one-line brief' },
     ],
     repo: 'https://github.com/VELCORA/velcora-quote-generator-P1',
@@ -66,7 +66,7 @@ const PROJECTS: Project[] = [
     result:
       'Every lead captured in seconds with a score and a next action. Zero leads slip through the cracks — follow-ups happen on schedule, and the won rate goes up.',
     built: [
-      'Took a Bolt-generated base and rebuilt it as our own product — de-Bolted, rebranded to Velgora, typed end to end.',
+      'Designed and built the pipeline CRM from scratch — intake form, auto-score engine, and kanban pipeline — fully typed end to end.',
       'Supabase schema: leads, lead_activities, notifications — RLS on, anon + authenticated access for the no-login single-tenant flow.',
       'Built the intake flow with auto-scoring and hot / warm / cold priority, plus dynamic date handling and email validation.',
       'Made it Vercel-ready: vercel.json SPA rewrite, engines pinned, .env.example committed, secrets gitignored. Build + typecheck + lint all pass.',
@@ -150,7 +150,7 @@ const PROJECTS: Project[] = [
     result:
       'Anyone in the business gets specialist-grade output in seconds — scored leads, ready-to-send emails, meeting action items, competitive research, and structured proposals — without switching tools or training an AI.',
     built: [
-      'Rebranded and customized the Vercel AI Chatbot template (Next.js 16 + AI SDK) into a Velcora-branded co-pilot.',
+      'Built the co-pilot on Next.js 16 + the AI SDK with a Velcora-branded chat experience and persistent sessions.',
       'Defined five Velcora workflow modes in lib/ai/modes.ts — each with icon, color, badge, starter prompts, and a tuned BANT/sales/outreach system prompt.',
       'Used the Lead Qualifier\'s system prompt to output a structured Qualification Card: lead score 0–100, hot/warm/cold, red flags, next action — via the createDocument tool.',
       'Wired session auth, chat history persistence, and a multi-model switcher across leading LLMs.',
