@@ -7,8 +7,5 @@ export const GITHUB_URL = 'https://github.com/VELCORA';
 export const CONTACT_URL = wa('Hi Velcora AI, I want a FREE audit of my business processes.');
 export const CTA_MESSAGES = {
   audit: 'Hi Velcora AI, I want a FREE audit of my business processes.',
-  leadsdr: 'Hi Velcora AI, I want to automate my sales follow-ups with LeadSDR.',
-  whatsflow: 'Hi Velcora AI, I want a WhatsApp chatbot for my business.',
-  docgpt: 'Hi Velcora AI, I want to chat with my documents with DocGPT.',
   newsletter: 'Hi Velcora AI, I want to subscribe to your newsletter.',
 };

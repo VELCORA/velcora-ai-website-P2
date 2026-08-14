@@ -12,9 +12,9 @@ const NAV = [
 ];
 
 const PRODUCTS = [
-  { label: 'LeadSDR', href: '#projects' },
-  { label: 'WhatsFlow', href: '#projects' },
-  { label: 'DocGPT', href: '#projects' },
+  { label: 'Quote Generator', href: '#projects' },
+  { label: 'Lead Pipeline CRM', href: '#projects' },
+  { label: 'AI Agent', href: '#projects' },
   { label: 'Free Audit', href: '#contact' },
 ];
 
