@@ -139,18 +139,18 @@ function ProjectCard({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 md:flex md:flex-row md:gap-5 text-[#D7E2EA] shrink-0">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-1 md:flex md:flex-row md:gap-4 text-[#D7E2EA] shrink-0">
           <div className="md:flex-1">
-            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Problem</p>
-            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.problem}</p>
+            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Problem</p>
+            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.problem}</p>
           </div>
           <div className="md:flex-1">
-            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Solution</p>
-            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.solution}</p>
+            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Solution</p>
+            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.solution}</p>
           </div>
           <div className="md:flex-1">
-            <p className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-0.5">Result</p>
-            <p className="text-xs sm:text-[0.8rem] font-light leading-snug line-clamp-2">{project.result}</p>
+            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Result</p>
+            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.result}</p>
           </div>
         </div>
 
