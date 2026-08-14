@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import LiveProjectButton from '../components/LiveProjectButton';
 import { wa } from '../lib/constants';
 
@@ -65,6 +65,97 @@ const PROJECTS: Project[] = [
   },
 ];
 
+function ImageLightbox({
+  images,
+  index,
+  onIndex,
+  onClose,
+}: {
+  images: string[];
+  index: number;
+  onIndex: (i: number) => void;
+  onClose: () => void;
+}) {
+  const onKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') onIndex((index + 1) % images.length);
+      if (e.key === 'ArrowLeft') onIndex((index - 1 + images.length) % images.length);
+    },
+    [index, images.length, onClose, onIndex]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onKey]);
+
+  if (index < 0 || index >= images.length) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 sm:p-8"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+    >
+      <motion.img
+        key={images[index]}
+        src={images[index]}
+        alt="Project screenshot"
+        initial={{ scale: 0.92, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.94, opacity: 0 }}
+        transition={{ type: 'spring', duration: 0.45, bounce: 0.16 }}
+        className="max-w-full max-h-[88vh] object-contain rounded-2xl shadow-2xl ring-1 ring-white/10 select-none"
+        draggable={false}
+      />
+      <button
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full border border-white/20 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-xl leading-none"
+      >
+        ✕
+      </button>
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => onIndex((index - 1 + images.length) % images.length)}
+            aria-label="Previous"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full border border-white/20 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-2xl leading-none"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => onIndex((index + 1) % images.length)}
+            aria-label="Next"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full border border-white/20 text-white/80 hover:text-white hover:bg-white/10 transition-colors text-2xl leading-none"
+          >
+            ›
+          </button>
+          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => onIndex(i)}
+                aria-label={`Screenshot ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  i === index ? 'w-6 bg-white' : 'w-2 bg-white/30 hover:bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
 function ProjectCard({
   project,
   index,
@@ -75,19 +166,26 @@ function ProjectCard({
   totalCards: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
+  const screenShots = [project.col1Image1, project.col1Image2, project.col2Image];
+
   const targetScale = 1 - (totalCards - 1 - index) * 0.03;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
+  const imgClass =
+    'w-full h-full min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px] hover:brightness-110 transition-[filter] duration-200 cursor-zoom-in';
+
   return (
-    <div
-      ref={containerRef}
-      className="relative h-[88vh] flex items-start justify-center sticky top-20 md:top-28"
-    >
+    <>
+      <div
+        ref={containerRef}
+        className="relative h-[88vh] flex items-start justify-center sticky top-20 md:top-28"
+      >
       <motion.div
         style={{ scale, top: `${index * 28}px` }}
         className="relative w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-3 sm:p-5 md:p-6 h-full flex flex-col overflow-hidden"
@@ -116,13 +214,15 @@ function ProjectCard({
             <img
               src={project.col1Image1}
               alt=""
-              className="w-full flex-1 min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
+              onClick={() => setLightboxIndex(0)}
+              className={imgClass}
               loading="lazy"
             />
             <img
               src={project.col1Image2}
               alt=""
-              className="w-full flex-1 min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
+              onClick={() => setLightboxIndex(1)}
+              className={imgClass}
               loading="lazy"
             />
           </div>
@@ -133,7 +233,8 @@ function ProjectCard({
             <img
               src={project.col2Image}
               alt={project.name}
-              className="w-full h-full min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px]"
+              onClick={() => setLightboxIndex(2)}
+              className={imgClass}
               loading="lazy"
             />
           </div>
@@ -187,7 +288,19 @@ function ProjectCard({
           <LiveProjectButton href={project.cta} />
         </div>
       </motion.div>
-    </div>
+      </div>
+
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <ImageLightbox
+            images={screenShots}
+            index={lightboxIndex}
+            onIndex={setLightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
