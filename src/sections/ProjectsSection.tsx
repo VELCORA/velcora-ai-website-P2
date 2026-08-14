@@ -1,18 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import LiveProjectButton from '../components/LiveProjectButton';
 import { wa } from '../lib/constants';
+
+interface ProjectImage {
+  src: string;
+  caption: string;
+}
 
 interface Project {
   number: string;
   name: string;
   category: string;
+  tagline: string;
   problem: string;
   solution: string;
   result: string;
-  col1Image1: string;
-  col1Image2: string;
-  col2Image: string;
+  built: string[];
+  stack: string[];
+  images: ProjectImage[];
   cta: string;
   repo?: string;
   live?: string;
@@ -23,12 +29,26 @@ const PROJECTS: Project[] = [
     number: '01',
     name: 'Velcora Quote Generator',
     category: 'AI Productivity · Web App',
-    problem: 'Freelancers and agencies rebuild quotes from scratch every time — same scope, pricing, and terms retyped daily, and slow quotes cost them deals.',
-    solution: 'An AI quoting tool that turns a one-line client brief into a polished, branded, print-ready quotation — scope, deliverables, timeline, pricing, payment schedule, terms — in seconds.',
-    result: 'Quotes in seconds instead of hours. Every quote on-brand and consistent; edit any figure and totals + tax recalculate automatically.',
-    col1Image1: '/projects/quote-generator/col1-image1.webp',
-    col1Image2: '/projects/quote-generator/col1-image2.webp',
-    col2Image: '/projects/quote-generator/col2-image.webp',
+    tagline:
+      'Turn a one-line client brief into a polished, branded, print-ready quotation in seconds — not hours.',
+    problem:
+      'Freelancers and agencies rebuild quotes from scratch every single time — same scope, same pricing, same terms, retyped daily. Slow quotes cost them deals, and every quote goes out slightly different.',
+    solution:
+      'An AI quoting tool. Drop in a one-line brief, and the system drafts the full quotation — scope, deliverables, timeline, pricing, payment schedule, terms. Every figure stays editable, and totals plus tax recalculate live as you type.',
+    result:
+      'Quotes in seconds instead of hours. Every quote on-brand and consistent, edit any figure and totals update instantly — no more spreadsheet arithmetic before sending.',
+    built: [
+      'Rebuilt a broken Lovable export into a clean Vite + React 19 + TypeScript SPA — dropped the 1,000-package Azure/Capacitor tree.',
+      'Kept the 44 shadcn UI components and the QuoteSheet engine — fully typed, zero dead deps.',
+      'Added a Vercel server function that drafts a complete quotation from a one-line brief using the Gemini API.',
+      'Hardened it: custom Tailwind v4 theme, local-first quote store, live tax/total recalculation, vercel.json SPA rewrite.',
+    ],
+    stack: ['Vite', 'React 19', 'TypeScript', 'Tailwind v4', 'shadcn/ui', 'Gemini API', 'Vercel'],
+    images: [
+      { src: '/projects/quote-generator/col2-image.webp', caption: 'The final quote sheet — branded, print-ready, every figure editable' },
+      { src: '/projects/quote-generator/col1-image1.webp', caption: 'Start from a template or a blank sheet' },
+      { src: '/projects/quote-generator/col1-image2.webp', caption: 'AI drafts the full quote from a one-line brief' },
+    ],
     repo: 'https://github.com/VELCORA/velcora-quote-generator-P1',
     live: 'https://velcora-quote-generator-p1.vercel.app',
     cta: wa('Hi Velcora AI, I want a quote generator like this for my business.'),
@@ -37,12 +57,26 @@ const PROJECTS: Project[] = [
     number: '02',
     name: 'Velcora Lead Pipeline CRM',
     category: 'Sales Ops · Web App',
-    problem: 'Agencies and service businesses lose track of incoming demand — leads land in DMs and inboxes, never get followed up, and deals quietly die.',
-    solution: 'A single-tenant CRM that captures every lead from one intake form, auto-scores it (0–100, hot/warm/cold) and moves it through a kanban pipeline: new → qualified → proposal → won or lost.',
-    result: 'Every lead captured in seconds with a score and next action. Zero leads slip through the cracks — follow-ups happen on schedule, won rate goes up.',
-    col1Image1: '/projects/lead-pipeline/col1-image1.webp',
-    col1Image2: '/projects/lead-pipeline/col1-image2.webp',
-    col2Image: '/projects/lead-pipeline/col2-image.webp',
+    tagline:
+      'Capture every lead from one form, auto-score it, and move it through the pipeline to won — nothing slips through the cracks.',
+    problem:
+      'Agencies and service businesses lose track of incoming demand. Leads land in DMs and inboxes, never get a follow-up, and deals quietly die. No system, no score, no pipeline — just chaos.',
+    solution:
+      'A single-tenant CRM built on Supabase. One intake form captures the lead, auto-scores it 0–100 (hot / warm / cold), and drops it into a kanban pipeline: new → qualified → proposal → won or lost.',
+    result:
+      'Every lead captured in seconds with a score and a next action. Zero leads slip through the cracks — follow-ups happen on schedule, and the won rate goes up.',
+    built: [
+      'Took a Bolt-generated base and rebuilt it as our own product — de-Bolted, rebranded to Velgora, typed end to end.',
+      'Supabase schema: leads, lead_activities, notifications — RLS on, anon + authenticated access for the no-login single-tenant flow.',
+      'Built the intake flow with auto-scoring and hot / warm / cold priority, plus dynamic date handling and email validation.',
+      'Made it Vercel-ready: vercel.json SPA rewrite, engines pinned, .env.example committed, secrets gitignored. Build + typecheck + lint all pass.',
+    ],
+    stack: ['Vite', 'React 18', 'TypeScript', 'Tailwind 3', 'Supabase', 'Vercel'],
+    images: [
+      { src: '/projects/lead-pipeline/col2-image.webp', caption: 'Intake form — auto-scored, hot / warm / cold' },
+      { src: '/projects/lead-pipeline/col1-image1.webp', caption: 'Overview — every lead and stage at a glance' },
+      { src: '/projects/lead-pipeline/col1-image2.webp', caption: 'Kanban pipeline — new → qualified → proposal → won' },
+    ],
     repo: 'https://github.com/VELCORA/velcora-single-tenant-lead-pipeline-crm-p5',
     live: 'https://velcora-single-tenant-lead-pipeline.vercel.app',
     cta: wa('Hi Velcora AI, I want a lead pipeline CRM like this for my business.'),
@@ -51,15 +85,26 @@ const PROJECTS: Project[] = [
     number: '03',
     name: 'DocGPT — Document Intelligence',
     category: 'AI Workflows',
-    problem: 'Contracts, invoices, and reports buried in folders — finding one answer means hours of manual searching.',
-    solution: 'A RAG-powered document assistant that reads your files and answers questions instantly, with citations from source documents.',
-    result: 'Search time cut from hours to seconds. Every answer traceable to its source document. Your knowledge base finally works for you.',
-    col1Image1:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1280&q=80',
-    col1Image2:
-      'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1280&q=80',
-    col2Image:
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1280&q=80',
+    tagline:
+      'Ask your documents anything. Answers come back in seconds — with citations straight from the source files.',
+    problem:
+      'Contracts, invoices, and reports buried in folders. Finding one answer means hours of manual searching through PDFs and documents nobody can keep organized.',
+    solution:
+      'A RAG-powered document assistant. Upload your files, ask questions in plain language, and get instant answers with citations pointing to the exact source document.',
+    result:
+      'Search time cut from hours to seconds. Every answer traceable to its source. Your knowledge base finally works for you instead of collecting dust.',
+    built: [
+      'Architected a retrieval-augmented pipeline: ingest, chunk, embed, index, then answer with source citations.',
+      'Built the chat interface on top of a typed document store with instant lookup across large file sets.',
+      'Every answer returns its source references — no hallucinated black boxes, every claim is checkable.',
+    ],
+    stack: ['RAG', 'Vector Index', 'LLM', 'TypeScript', 'Vercel'],
+    images: [
+      { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — document library' },
+      { src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — ask anything, cited answers' },
+      { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — answers traceable to sources' },
+    ],
+    repo: 'https://github.com/VELCORA',
     cta: wa('Hi Velcora AI, I want to chat with my documents with DocGPT.'),
   },
 ];
@@ -70,7 +115,7 @@ function ImageLightbox({
   onIndex,
   onClose,
 }: {
-  images: string[];
+  images: ProjectImage[];
   index: number;
   onIndex: (i: number) => void;
   onClose: () => void;
@@ -104,16 +149,19 @@ function ImageLightbox({
       aria-modal="true"
     >
       <motion.img
-        key={images[index]}
-        src={images[index]}
-        alt="Project screenshot"
+        key={images[index]!.src}
+        src={images[index]!.src}
+        alt={images[index]!.caption}
         initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.94, opacity: 0 }}
         transition={{ type: 'spring', duration: 0.45, bounce: 0.16 }}
-        className="max-w-full max-h-[88vh] object-contain rounded-2xl shadow-2xl ring-1 ring-white/10 select-none"
+        className="max-w-full max-h-[82vh] object-contain rounded-2xl shadow-2xl ring-1 ring-white/10 select-none"
         draggable={false}
       />
+      <p className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 text-center text-white/70 text-sm max-w-md px-4">
+        {images[index]!.caption}
+      </p>
       <button
         onClick={onClose}
         aria-label="Close"
@@ -137,7 +185,7 @@ function ImageLightbox({
           >
             ›
           </button>
-          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
             {images.map((_, i) => (
               <button
                 key={i}
@@ -155,168 +203,193 @@ function ImageLightbox({
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  totalCards,
-}: {
-  project: Project;
-  index: number;
-  totalCards: number;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
+function ProjectDetail({ project, index }: { project: Project; index: number }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
+  const flipped = index % 2 === 1;
 
-  const screenShots = [project.col1Image1, project.col1Image2, project.col2Image];
-
-  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
-  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
-
-  const imgClass =
-    'w-full h-full min-h-0 object-cover object-top rounded-[30px] sm:rounded-[36px] md:rounded-[44px] hover:brightness-110 transition-[filter] duration-200 cursor-zoom-in';
+  const Btn =
+    'inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-6 py-3 text-sm font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA] hover:text-[#0C0C0C]';
 
   return (
-    <>
+    <div className="relative py-20 sm:py-28 md:py-36 border-b border-[#D7E2EA]/10">
       <div
-        ref={containerRef}
-        className="relative h-[88vh] flex items-start justify-center sticky top-20 md:top-28"
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-6 sm:-top-10 right-0 font-black text-[#D7E2EA]/[0.06] leading-none text-[clamp(8rem,24vw,320px)]"
       >
-      <motion.div
-        style={{ scale, top: `${index * 28}px` }}
-        className="relative w-full max-w-6xl rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-3 sm:p-5 md:p-6 h-full flex flex-col overflow-hidden"
-      >
-        <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
-          <span className="font-black text-[#D7E2EA] text-[clamp(1.8rem,6vw,95px)] leading-none">
-            {project.number}
-          </span>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <div className="text-right">
-              <p className="uppercase tracking-widest text-[#D7E2EA] text-[0.65rem] sm:text-xs opacity-70">
-                {project.category}
-              </p>
-              <h2 className="font-medium uppercase text-[#D7E2EA] text-[clamp(0.95rem,1.8vw,1.6rem)]">
-                {project.name}
-              </h2>
+        {project.number}
+      </div>
+
+      <div className="max-w-6xl mx-auto relative">
+        <div className="mb-10 sm:mb-14">
+          <p className="uppercase tracking-[0.3em] text-[#D7E2EA]/60 text-xs sm:text-sm mb-3">
+            Project {project.number}
+          </p>
+          <h3 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(2.2rem,6vw,5rem)] mb-4">
+            {project.name}
+          </h3>
+          <p className="text-[#D7E2EA]/70 text-base sm:text-lg max-w-3xl">{project.tagline}</p>
+        </div>
+
+        <div
+          className={`grid lg:grid-cols-2 gap-10 lg:gap-14 items-start ${
+            flipped ? 'lg:[&>*:first-child]:order-2' : ''
+          }`}
+        >
+          <div className="min-w-0">
+            <div className="grid gap-6">
+              <div>
+                <p className="uppercase tracking-widest text-[#D7E2EA]/50 text-xs mb-2">
+                  The Problem
+                </p>
+                <p className="text-[#D7E2EA]/85 leading-relaxed">{project.problem}</p>
+              </div>
+              <div>
+                <p className="uppercase tracking-widest text-[#D7E2EA]/50 text-xs mb-2">
+                  What It Does
+                </p>
+                <p className="text-[#D7E2EA]/85 leading-relaxed">{project.solution}</p>
+              </div>
+              <div>
+                <p className="uppercase tracking-widest text-[#D7E2EA]/50 text-xs mb-2">
+                  How We Built It
+                </p>
+                <ol className="grid gap-2.5">
+                  {project.built.map((step, i) => (
+                    <li key={i} className="flex gap-3 text-[#D7E2EA]/85 leading-relaxed">
+                      <span className="font-medium text-[#D7E2EA]/40 shrink-0 w-5">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div>
+                <p className="uppercase tracking-widest text-[#D7E2EA]/50 text-xs mb-2">Tech Stack</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-[#D7E2EA]/30 px-4 py-1.5 text-sm text-[#D7E2EA]/80"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="uppercase tracking-widest text-[#D7E2EA]/50 text-xs mb-2">
+                  The Result
+                </p>
+                <p className="text-[#D7E2EA]/85 leading-relaxed">{project.result}</p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={Btn}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                  </svg>
+                  Source Code
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={Btn}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                  Live Demo
+                </a>
+              )}
+              <LiveProjectButton href={project.cta} />
+            </div>
+          </div>
+
+          <div className="min-w-0">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2">
+                <button
+                  onClick={() => setLightboxIndex(0)}
+                  className="group w-full block cursor-zoom-in"
+                >
+                  <img
+                    src={project.images[0]!.src}
+                    alt={project.images[0]!.caption}
+                    className="w-full aspect-[4/3] object-cover object-top rounded-3xl border border-[#D7E2EA]/15 transition-[filter] duration-200 group-hover:brightness-110"
+                    loading="lazy"
+                  />
+                </button>
+                <p className="text-xs text-[#D7E2EA]/50 mt-2 text-right">
+                  {project.images[0]!.caption}
+                </p>
+              </div>
+              <div>
+                <button onClick={() => setLightboxIndex(1)} className="group w-full block cursor-zoom-in">
+                  <img
+                    src={project.images[1]!.src}
+                    alt={project.images[1]!.caption}
+                    className="w-full aspect-[16/10] object-cover object-top rounded-3xl border border-[#D7E2EA]/15 transition-[filter] duration-200 group-hover:brightness-110"
+                    loading="lazy"
+                  />
+                </button>
+                <p className="text-xs text-[#D7E2EA]/50 mt-2">{project.images[1]!.caption}</p>
+              </div>
+              <div>
+                <button onClick={() => setLightboxIndex(2)} className="group w-full block cursor-zoom-in">
+                  <img
+                    src={project.images[2]!.src}
+                    alt={project.images[2]!.caption}
+                    className="w-full aspect-[16/10] object-cover object-top rounded-3xl border border-[#D7E2EA]/15 transition-[filter] duration-200 group-hover:brightness-110"
+                    loading="lazy"
+                  />
+                </button>
+                <p className="text-xs text-[#D7E2EA]/50 mt-2">{project.images[2]!.caption}</p>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="flex gap-3 items-stretch flex-1 min-h-0 mb-3">
-          <div
-            className="flex flex-col gap-3 min-w-0 min-h-0"
-            style={{ width: '44%' }}
-          >
-            <img
-              src={project.col1Image1}
-              alt=""
-              onClick={() => setLightboxIndex(0)}
-              className={imgClass}
-              loading="lazy"
-            />
-            <img
-              src={project.col1Image2}
-              alt=""
-              onClick={() => setLightboxIndex(1)}
-              className={imgClass}
-              loading="lazy"
-            />
-          </div>
-          <div
-            className="min-w-0 min-h-0"
-            style={{ width: '56%' }}
-          >
-            <img
-              src={project.col2Image}
-              alt={project.name}
-              onClick={() => setLightboxIndex(2)}
-              className={imgClass}
-              loading="lazy"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-x-3 gap-y-1 md:flex md:flex-row md:gap-4 text-[#D7E2EA] shrink-0">
-          <div className="md:flex-1">
-            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Problem</p>
-            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.problem}</p>
-          </div>
-          <div className="md:flex-1">
-            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Solution</p>
-            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.solution}</p>
-          </div>
-          <div className="md:flex-1">
-            <p className="text-[0.6rem] uppercase tracking-widest opacity-50 mb-0.5">Result</p>
-            <p className="text-xs sm:text-[0.75rem] font-light leading-snug line-clamp-1">{project.result}</p>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-end gap-2.5 mt-3 shrink-0">
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                <path d="M9 18c-4.51 2-5-2-7-2" />
-              </svg>
-              Source Code
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-              Live Demo
-            </a>
-          )}
-          <LiveProjectButton href={project.cta} />
-        </div>
-      </motion.div>
       </div>
 
       <AnimatePresence>
         {lightboxIndex !== null && (
           <ImageLightbox
-            images={screenShots}
+            images={project.images}
             index={lightboxIndex}
             onIndex={setLightboxIndex}
             onClose={() => setLightboxIndex(null)}
           />
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-[#0C0C0C] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-28">
-      <h2 className="hero-heading text-center font-black uppercase leading-none tracking-tight text-[clamp(3rem,12vw,160px)] mb-16 sm:mb-20 md:mb-28">
+    <section
+      id="projects"
+      className="bg-[#0C0C0C] -mt-10 sm:-mt-12 md:-mt-14 z-10 relative rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 pt-20 sm:pt-24 md:pt-28"
+    >
+      <h2 className="hero-heading text-center font-black uppercase leading-none tracking-tight text-[clamp(3rem,12vw,160px)] mb-10 sm:mb-14">
         Projects
       </h2>
-      <div className="flex flex-col gap-6">
+      <div>
         {PROJECTS.map((project, i) => (
-          <ProjectCard
-            key={project.number}
-            project={project}
-            index={i}
-            totalCards={PROJECTS.length}
-          />
+          <ProjectDetail key={project.number} project={project} index={i} />
         ))}
       </div>
     </section>
