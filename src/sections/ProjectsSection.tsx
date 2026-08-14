@@ -83,29 +83,31 @@ const PROJECTS: Project[] = [
   },
   {
     number: '03',
-    name: 'DocGPT — Document Intelligence',
-    category: 'AI Workflows',
+    name: 'Velcora Enterprise Doc Processing',
+    category: 'Document AI · Enterprise Web App',
     tagline:
-      'Ask your documents anything. Answers come back in seconds — with citations straight from the source files.',
+      'Extract, audit, and automate enterprise financial paperwork — invoices, purchase orders, leases — in seconds, not days.',
     problem:
-      'Contracts, invoices, and reports buried in folders. Finding one answer means hours of manual searching through PDFs and documents nobody can keep organized.',
+      'Finance teams key invoices, POs, and leases into systems by hand. It is slow, error-prone, and no one checks whether the line items even add up — until an audit finds out.',
     solution:
-      'A RAG-powered document assistant. Upload your files, ask questions in plain language, and get instant answers with citations pointing to the exact source document.',
+      'A multimodal OCR workbench. Ingest PDFs, PNGs, JPGs, TXT, or CSV; the engine parses structured fields, validates the line-item math, flags risk anomalies, and triggers ERP webhooks — all in one pipeline.',
     result:
-      'Search time cut from hours to seconds. Every answer traceable to its source. Your knowledge base finally works for you instead of collecting dust.',
+      'Documents processed in seconds instead of hours. Every field extracted, every total verified, every anomaly flagged before it becomes a problem — and the ERP gets the data automatically.',
     built: [
-      'Architected a retrieval-augmented pipeline: ingest, chunk, embed, index, then answer with source citations.',
-      'Built the chat interface on top of a typed document store with instant lookup across large file sets.',
-      'Every answer returns its source references — no hallucinated black boxes, every claim is checkable.',
+      'Built the intake workbench: upload, paste text, or generate a test invoice across six document types — invoices, POs, contracts, receipts, tax forms, financial statements.',
+      'Wired the multimodal OCR pipeline that parses structured fields from the document and feeds the inspector.',
+      'Built the Structured Inspector — validates line-item math and detects risk anomalies so bad data never passes silently.',
+      'Added the Automation & API hub: rule-based triggers, live webhook log, and an SDK surface for integrating with enterprise apps.',
     ],
-    stack: ['RAG', 'Vector Index', 'LLM', 'TypeScript', 'Vercel'],
+    stack: ['TypeScript', 'Vite', 'React', 'Multimodal OCR', 'Vercel'],
     images: [
-      { src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — document library' },
-      { src: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — ask anything, cited answers' },
-      { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1600&q=80', caption: 'Concept — answers traceable to sources' },
+      { src: '/projects/doc-pipeline/col1-image1.webp', caption: 'Document Workbench — ingest, paste, or generate a test invoice' },
+      { src: '/projects/doc-pipeline/col1-image2.webp', caption: 'Structured Inspector — parsed fields with math + risk validation' },
+      { src: '/projects/doc-pipeline/col2-image.webp', caption: 'Automation & API — workflow rules, webhook log, SDK' },
     ],
-    repo: 'https://github.com/VELCORA',
-    cta: wa('Hi Velcora AI, I want to chat with my documents with DocGPT.'),
+    repo: 'https://github.com/VELCORA/velcora-enterprise--doc---P6',
+    live: 'https://velcora-enterprise-doc-p6.vercel.app',
+    cta: wa('Hi Velcora AI, I want enterprise document processing like this for my business.'),
   },
 ];
 
