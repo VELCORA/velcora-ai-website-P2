@@ -14,23 +14,24 @@ interface Project {
   col1Image2: string;
   col2Image: string;
   cta: string;
+  repo?: string;
+  live?: string;
 }
 
 const PROJECTS: Project[] = [
   {
     number: '01',
-    name: 'LeadSDR — AI Sales Pipeline',
-    category: 'Lead Automation',
-    problem: 'Sales teams lose hours every day following up leads manually — and most enquiries go cold before anyone replies.',
-    solution: 'A multi-agent AI sales pipeline that qualifies leads, sends personalized WhatsApp + email follow-ups, and books meetings automatically.',
-    result: 'Every lead contacted within 60 seconds. Repetitive follow-up fully automated. The pipeline runs 24/7 without missing a single lead.',
-    col1Image1:
-      'https://images.unsplash.com/photo-1749006590639-e749e6b7d84c?auto=format&fit=crop&w=1280&q=80',
-    col1Image2:
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1280&q=80',
-    col2Image:
-      'https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1280&q=80',
-    cta: wa('Hi Velcora AI, I want to automate my sales follow-ups with LeadSDR.'),
+    name: 'Velcora Quote Generator',
+    category: 'AI Productivity · Web App',
+    problem: 'Freelancers and agencies rebuild quotes from scratch every time — same scope, pricing, and terms retyped daily, and slow quotes cost them deals.',
+    solution: 'An AI quoting tool that turns a one-line client brief into a polished, branded, print-ready quotation — scope, deliverables, timeline, pricing, payment schedule, terms — in seconds.',
+    result: 'Quotes in seconds instead of hours. Every quote on-brand and consistent; edit any figure and totals + tax recalculate automatically.',
+    col1Image1: '/projects/quote-generator/col1-image1.webp',
+    col1Image2: '/projects/quote-generator/col1-image2.webp',
+    col2Image: '/projects/quote-generator/col2-image.webp',
+    repo: 'https://github.com/VELCORA/velcora-quote-generator-P1',
+    live: 'https://velcora-quote-generator-p1.vercel.app',
+    cta: wa('Hi Velcora AI, I want a quote generator like this for my business.'),
   },
   {
     number: '02',
@@ -153,7 +154,36 @@ function ProjectCard({
           </div>
         </div>
 
-        <div className="flex justify-end mt-4 shrink-0">
+        <div className="flex flex-wrap items-center justify-end gap-3 mt-4 shrink-0">
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+              Source Code
+            </a>
+          )}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/60 px-6 py-2.5 sm:px-7 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA]/10"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Live Demo
+            </a>
+          )}
           <LiveProjectButton href={project.cta} />
         </div>
       </motion.div>

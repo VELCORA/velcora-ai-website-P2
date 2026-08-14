@@ -21,5 +21,5 @@ Deployed on Vercel (`velcora-ai.vercel.app`). SPA rewrite handled by `vercel.jso
 
 ## Contact
 
-- Email: velcora.ai@gmail.com
+- Email: braincore189@gmail.com
 - WhatsApp: +91 79882 77723
