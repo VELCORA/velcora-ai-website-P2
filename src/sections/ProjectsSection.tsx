@@ -593,7 +593,7 @@ export default function ProjectsSection() {
             ))}
           </div>
 
-          <div className="mt-14 sm:mt-20 text-center">
+          <div className="mt-14 sm:mt-20 -translate-y-[5%] text-center">
             <p className="text-[#D7E2EA]/60 text-base sm:text-lg max-w-2xl mx-auto mb-8">
               Every project below is built from scratch — real engines, real deployments, no templates. See the full case studies.
             </p>
