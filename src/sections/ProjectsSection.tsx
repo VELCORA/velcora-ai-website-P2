@@ -317,6 +317,64 @@ function ImageLightbox({
   );
 }
 
+function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onOpen}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '50px', amount: 0 }}
+      transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+      className="group relative overflow-hidden rounded-3xl border border-[#D7E2EA]/15 text-left transition-colors duration-300 hover:border-[#D7E2EA]/45 bg-[#0E0E0E]"
+      aria-label={`View ${project.name} — ${project.tagline}`}
+    >
+      <div className="relative overflow-hidden aspect-[4/3]">
+        <img
+          src={project.images[0]!.src}
+          alt={project.name}
+          loading="lazy"
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-4 right-2 font-black text-white/[0.10] leading-none text-[clamp(4rem,9vw,7rem)]"
+        >
+          {project.number}
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C] via-transparent to-transparent opacity-80" />
+      </div>
+      <div className="p-5 sm:p-6">
+        <p className="uppercase tracking-[0.25em] text-[#D7E2EA]/50 text-[11px] mb-2">
+          {project.category}
+        </p>
+        <h3 className="hero-heading font-black uppercase leading-none tracking-tight text-[clamp(1.3rem,3vw,1.8rem)] mb-2">
+          {project.name}
+        </h3>
+        <p className="text-[#D7E2EA]/70 text-sm leading-relaxed line-clamp-2">{project.tagline}</p>
+        <p className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-[#D7E2EA]/70 group-hover:text-[#D7E2EA] transition-colors duration-200">
+          View Case Study
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </p>
+      </div>
+    </motion.button>
+  );
+}
+
 function ProjectDetail({ project, index }: { project: Project; index: number }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const flipped = index % 2 === 1;
@@ -493,6 +551,26 @@ function ProjectDetail({ project, index }: { project: Project; index: number }) 
 }
 
 export default function ProjectsSection() {
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const onHash = () => {
+      if (window.location.hash === '#projects') {
+        setExpanded(true);
+      }
+    };
+    onHash();
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  useEffect(() => {
+    if (expanded) {
+      const el = document.getElementById('projects-list');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [expanded]);
+
   return (
     <section
       id="projects"
@@ -501,11 +579,76 @@ export default function ProjectsSection() {
       <h2 className="hero-heading text-center font-black uppercase leading-none tracking-tight text-[clamp(3rem,12vw,160px)] mb-10 sm:mb-14">
         Projects
       </h2>
-      <div>
-        {PROJECTS.map((project, i) => (
-          <ProjectDetail key={project.number} project={project} index={i} />
-        ))}
-      </div>
+
+      {!expanded && (
+        <>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 max-w-6xl mx-auto">
+            {PROJECTS.map((project, i) => (
+              <ProjectCard
+                key={project.number}
+                project={project}
+                index={i}
+                onOpen={() => setExpanded(true)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-14 sm:mt-20 text-center">
+            <p className="text-[#D7E2EA]/60 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+              Every project below is built from scratch — real engines, real deployments, no templates. See the full case studies.
+            </p>
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="inline-flex items-center gap-3 rounded-full border-2 border-[#D7E2EA] px-8 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base font-medium uppercase tracking-widest text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA] hover:text-[#0C0C0C]"
+            >
+              View All Projects
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+              </svg>
+            </button>
+          </div>
+        </>
+      )}
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            id="projects-list"
+            key="projects-list"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div>
+              {PROJECTS.map((project, i) => (
+                <motion.div
+                  key={project.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  <ProjectDetail project={project} index={i} />
+                </motion.div>
+              ))}
+            </div>
+            <div className="pb-16 sm:pb-24 text-center">
+              <button
+                type="button"
+                onClick={() => setExpanded(false)}
+                className="inline-flex items-center gap-3 rounded-full border border-[#D7E2EA]/60 px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors duration-200 hover:bg-[#D7E2EA] hover:text-[#0C0C0C]"
+              >
+                Collapse Projects
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="12" y1="19" x2="12" y2="5" />
+                  <polyline points="5 12 12 5 19 12" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
