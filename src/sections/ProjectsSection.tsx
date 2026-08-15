@@ -221,6 +221,60 @@ const PROJECTS: Project[] = [
     live: 'https://velcora-ai-high-fidelity-marketing.vercel.app',
     cta: wa('Hi Velcora AI, I want a web scraping and data intelligence studio like this.'),
   },
+  {
+    number: '08',
+    name: 'Velcora Lead Engine',
+    category: 'Lead Generation · n8n Workflow',
+    tagline:
+      'Turn any list of business queries into a clean, deduped email database — scraped from the map index with zero paid APIs and zero per-lead fees.',
+    problem:
+      'Building a lead list means hours of manual searching, copy-pasting, and spreadsheet cleaning — and most scraping tools charge per record or break on messy listings. Small teams simply cannot afford it.',
+    solution:
+      'A map-index email engine. Give it a query list — like "cafes in Mumbai" — and it searches the map index for matching businesses, pulls each listing, extracts emails with pure regex (no third-party APIs, no per-lead cost), dedupes everything, and pushes the clean list into Google Sheets.',
+    result:
+      'A ready-to-pitch email database from any query list — deduped, clean, and in your CRM sheet for $0 in API costs, with each query running as its own background execution.',
+    built: [
+      'Engineered the query runner: feeds each query through the map-index search, extracts business listing URLs, then batches every page fetch across 26 core-only nodes.',
+      'Built the email extractor in pure code — regex-based extraction straight from raw listing HTML, so there are no third-party APIs and no per-lead fees.',
+      'Wired dedupe and filtering so the final list is clean, unique, and dump-ready for outreach.',
+      'Connected the Google Sheets sink with per-query background execution so every email lands in the CRM automatically.',
+    ],
+    stack: ['n8n', 'Web Scraping', 'Google Sheets', 'Regex', 'Automation'],
+    images: [
+      { src: '/projects/lead-engine/col1-image1.webp', caption: 'The full 26-node engine — query runner, extractor, dedupe, and sheet sink' },
+      { src: '/projects/lead-engine/col1-image2.webp', caption: 'Map-index search — matching business listings pulled from each query' },
+      { src: '/projects/lead-engine/col2-image.webp', caption: 'Email extraction — regex parser pulling clean emails from raw listings' },
+    ],
+    repo: 'https://github.com/VELCORA/velcora-lead-gen-system-P3',
+    cta: wa('Hi Velcora AI, I want a lead generation engine like this for my business.'),
+  },
+  {
+    number: '09',
+    name: 'Velcora SDR Pipeline',
+    category: 'Sales Automation · n8n Workflow',
+    tagline:
+      'Four autonomous agents run your entire sales outreach — capture, qualify, follow up, and recover no-shows without a single manual email.',
+    problem:
+      'Outreach dies from inconsistency. Leads land and nobody follows up on time, follow-up counts are never tracked, calendar bookings and CRM records drift apart, and no-shows never get a second chance. Deals leak quietly.',
+    solution:
+      'A 36-node sales operating system running four autonomous agents — a CRM Agent that ingests fresh leads daily and logs them, a Follow-Up Agent that personalizes and sends a three-touch email sequence, a Concierge Agent that watches your calendar and updates lead status the moment calls book, and a No-Show Agent that sends polite reschedule emails automatically.',
+    result:
+      'Every lead touched on schedule, every follow-up personalized and counted, bookings pulled out of the sequence the instant they happen, no-shows recovered automatically — a complete outreach lifecycle running in the background.',
+    built: [
+      'Designed and built the four-agent architecture — CRM ingestion, multi-touch follow-up, calendar concierge, and no-show recovery — wired across 36 nodes.',
+      'Built the CRM Agent: scheduled sync from the lead list into the master CRM sheet, with data formatting and a full list reset ready for the next batch.',
+      'Built the Follow-Up Agent: an LLM engine that personalizes three sequential emails by name, role, company, and industry, sent via Gmail with every follow-up logged back to the CRM.',
+      'Built the Concierge and No-Show Agents: calendar-triggered status flips for booked calls and automatic reschedule outreach, with protection against double emails.',
+    ],
+    stack: ['n8n', 'Google Sheets', 'Gmail', 'Google Calendar', 'LLM', 'Automation'],
+    images: [
+      { src: '/projects/sdr-pipeline/col1-image1.webp', caption: 'The full 36-node pipeline — CRM, follow-up, concierge, and no-show agents' },
+      { src: '/projects/sdr-pipeline/col1-image2.webp', caption: 'Follow-up engine — three-touch LLM-personalized email sequences' },
+      { src: '/projects/sdr-pipeline/col2-image.webp', caption: 'CRM + calendar automation — bookings pulled out of the sequence instantly' },
+    ],
+    repo: 'https://github.com/VELCORA/lead-gen-pipeline---P4',
+    cta: wa('Hi Velcora AI, I want an AI SDR pipeline like this for my sales team.'),
+  },
 ];
 
 function ImageLightbox({
